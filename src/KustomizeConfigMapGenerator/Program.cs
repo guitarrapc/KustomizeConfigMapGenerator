@@ -45,8 +45,8 @@ namespace KustomizeConfigMapGenerator
             }
         }
 
-        [Command("file", "Generate ConfigMap from specific path's files.")]
-        public async Task ExecuteFile(
+        [Command("literals", "Generate ConfigMap from specific key=value literals.")]
+        public async Task ExecuteLiterals(
             [Option("-i", "comma separated key=value style literals. (ex. foo=bar,hoge=fuga")]string inputs,
             [Option("-o", "path to the output kustomization file.")]string outputPath,
             [Option("-n", "configmap name of ConfigMapGenerator.")]string name,
