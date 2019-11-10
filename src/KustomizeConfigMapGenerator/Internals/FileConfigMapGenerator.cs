@@ -48,7 +48,8 @@ namespace KustomizeConfigMapGenerator.Internals
             // get files from basepath -> FileInfo[]
             var files = Directory.EnumerateFiles(basePath, searchPattern, SearchOption.AllDirectories)
                 .Select(x => x.Replace(basePath, ""))
-                .Select(x => x.Replace(@"\", "/"));
+                .Select(x => x.Replace(@"\", "/"))
+                .OrderBy(x => x);
 
             if (!files.Any())
                 return "";
