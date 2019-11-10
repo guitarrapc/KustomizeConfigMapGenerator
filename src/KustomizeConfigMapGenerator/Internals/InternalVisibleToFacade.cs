@@ -1,2 +1,2 @@
 ﻿using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("KustomizeConfigurationGenerator.Tests")]
+[assembly: InternalsVisibleTo("KustomizeConfigMapGenerator.Tests")]

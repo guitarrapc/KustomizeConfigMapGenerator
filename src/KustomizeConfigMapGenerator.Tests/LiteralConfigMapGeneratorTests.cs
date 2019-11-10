@@ -4,25 +4,25 @@ using System;
 using System.IO;
 using Xunit;
 
-namespace KustomizeConfigurationGenerator.Tests
+namespace KustomizeConfigMapGenerator.Tests
 {
-    public class FileConfigMapGeneratorTests
+    public class LiteralConfigMapGeneratorTests
     {
-        private static readonly string basePath = "assets";
+        private static readonly string[] inputs = new[] { "foo=bar", "piyo=poyo", "hoge=fuga" };
 
         [Theory]
         [InlineData("test", Behavior.unspecified, false)]
         public void UnspecifiedContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"configMapGenerator:
   - name: {name}
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -32,16 +32,16 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.create, false)]
         public void CreateContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"configMapGenerator:
   - name: {name}
     behavior: create
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -51,16 +51,16 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.merge, false)]
         public void MergeContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"configMapGenerator:
   - name: {name}
     behavior: merge
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -70,16 +70,16 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.replace, false)]
         public void ReplaceContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"configMapGenerator:
   - name: {name}
     behavior: replace
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -89,14 +89,14 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.unspecified, true)]
         public void UnspecifiedAppendContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"  - name: {name}
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -106,15 +106,15 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.create, true)]
         public void CreateAppendContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"  - name: {name}
     behavior: create
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -124,15 +124,15 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.merge, true)]
         public void MergeAppendContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"  - name: {name}
     behavior: merge
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -142,25 +142,18 @@ namespace KustomizeConfigurationGenerator.Tests
         [InlineData("test", Behavior.replace, true)]
         public void ReplaceAppendContentsTest(string name, Behavior behavior, bool append)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            var actual = generator.Generate(basePath, "*.json");
+            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var actual = generator.Generate(inputs);
             // result is always LF
             var expected = @$"  - name: {name}
     behavior: replace
-    files:
-      - /bar.json
-      - /foo.json
-      - /hoge.json
+    literals:
+      - foo=bar
+      - piyo=poyo
+      - hoge=fuga
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
-        }
-        [Theory]
-        [InlineData("test", Behavior.unspecified, false)]
-        public void PathNotExistsTest(string name, Behavior behavior, bool append)
-        {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
-            Assert.Throws<DirectoryNotFoundException>(() => generator.Generate("FooBar", "*.json"));
         }
     }
 }
