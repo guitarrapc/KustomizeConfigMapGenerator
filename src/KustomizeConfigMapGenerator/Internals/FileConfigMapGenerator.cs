@@ -73,14 +73,14 @@ namespace KustomizeConfigMapGenerator.Internals
             // name
             builder.AppendLineLFIndent2(NameKey + Name);
 
-            // kind
-            builder.AppendLineLFIndent4(KindKey);
-
             // behavior
             if (Behavior != Behavior.unspecified)
             {
                 builder.AppendLineLFIndent4(BehaviorKey + Behavior.ToString());
             }
+
+            // kind
+            builder.AppendLineLFIndent4(KindKey);
 
             // values
             foreach (var value in values)
