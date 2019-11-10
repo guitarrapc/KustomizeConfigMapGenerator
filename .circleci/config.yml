@@ -1,19 +1,12 @@
 version: 2.1
 executors:
-  dotnet:
-    docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:2.1
-    environment:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
-      NUGET_XMLDOC_MODE: skip
-      BUILD_CONFIG: Release
-      CIRCLE_TEST_REPORTS: /workspace/circleci-test-results
   dotnet3:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:3.0
     environment:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
       NUGET_XMLDOC_MODE: skip
+      CIRCLE_TEST_REPORTS: /workspace/circleci-test-results
   go:
     docker:
       - image: circleci/golang
@@ -48,7 +41,7 @@ jobs:
           path: ./src/KustomizeConfigMapGenerator/bin/Release
           destination: ./KustomizeConfigMapGenerator/
   build-singlepackage:
-    executor: dotnet3
+    executor: dotnet
     steps:
       - checkout
       - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./KustomizeConfigMapGenerator -r win-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}
