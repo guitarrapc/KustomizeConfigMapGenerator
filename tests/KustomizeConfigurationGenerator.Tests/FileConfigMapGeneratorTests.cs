@@ -20,9 +20,9 @@ namespace KustomizeConfigurationGenerator.Tests
             var expected = @$"configMapGenerator:
   - name: {name}
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -39,9 +39,9 @@ namespace KustomizeConfigurationGenerator.Tests
   - name: {name}
     behavior: create
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -58,9 +58,9 @@ namespace KustomizeConfigurationGenerator.Tests
   - name: {name}
     behavior: merge
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -77,12 +77,10 @@ namespace KustomizeConfigurationGenerator.Tests
   - name: {name}
     behavior: replace
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
-            Console.WriteLine(expected);
-            Console.WriteLine(actual);
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
         }
@@ -96,9 +94,9 @@ namespace KustomizeConfigurationGenerator.Tests
             // result is always LF
             var expected = @$"  - name: {name}
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -114,9 +112,9 @@ namespace KustomizeConfigurationGenerator.Tests
             var expected = @$"  - name: {name}
     behavior: create
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -132,9 +130,9 @@ namespace KustomizeConfigurationGenerator.Tests
             var expected = @$"  - name: {name}
     behavior: merge
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
@@ -150,9 +148,9 @@ namespace KustomizeConfigurationGenerator.Tests
             var expected = @$"  - name: {name}
     behavior: replace
     files:
-      - /test1.json
-      - /test2.json
-      - /test3.json
+      - /bar.json
+      - /foo.json
+      - /hoge.json
 ".Replace("\r\n", "\n");
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
