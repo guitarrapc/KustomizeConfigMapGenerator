@@ -81,6 +81,8 @@ namespace KustomizeConfigurationGenerator.Tests
       - /test2.json
       - /test3.json
 ".Replace("\r\n", "\n");
+            Console.WriteLine(expected);
+            Console.WriteLine(actual);
             Assert.NotNull(actual);
             Assert.Equal(expected, actual);
         }

@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run: dotnet tool install -g dotnet-reportgenerator-globaltool
       - run: dotnet build -c Debug
-      - run: dotnet test -c Debug -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --test-adapter-path:. --logger:"xunit;LogFilePath=results.xml"
+      - run: dotnet test -c Debug -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --test-adapter-path:. --logger:"xunit;LogFilePath=results.xml" < /dev/null
       - run: curl -s https://codecov.io/bash > codecov
       - run: chmod +x codecov
       - run: ./codecov -f ./src/KustomizeConfigMapGenerator.Tests/coverage.opencover.xml
@@ -34,7 +34,7 @@ jobs:
     steps:
       - checkout
       - run: dotnet build -c Release -p:Version=${CIRCLE_TAG}
-      - run: dotnet test -c Release
+      - run: dotnet test -c Release < /dev/null
       - run: dotnet pack ./src/KustomizeConfigMapGenerator/KustomizeConfigMapGenerator.csproj -c Release --no-build -p:Version=${CIRCLE_TAG}
       - run: dotnet nuget push ./src/KustomizeConfigMapGenerator/bin/Release/KustomizeConfigMapGenerator.${CIRCLE_TAG}.nupkg -s https://www.nuget.org/api/v2/package -k ${NUGET_KEY}
       - store_artifacts:
