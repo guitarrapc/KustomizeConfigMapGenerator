@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="11/11/2019 04:42:43">
+  <assembly name="D:\git\guitarrapc\KustomizeConfigMapGenerator\tests\KustomizeConfigurationGenerator.Tests\bin\Debug\netcoreapp3.0\KustomizeConfigurationGenerator.Tests.dll" run-date="2019-11-11" run-time="04:42:43" total="17" passed="17" failed="0" skipped="0" time="0.014" errors="0">
+    <errors />
+    <collection total="9" passed="9" failed="0" skipped="0" name="Test collection for KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" time="0.008">
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.PathNotExistsTest(name: &quot;test&quot;, behavior: unspecified, append: False)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="PathNotExistsTest" time="0.0047831" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.ReplaceContentsTest(name: &quot;test&quot;, behavior: replace, append: False)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="ReplaceContentsTest" time="0.0014300" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.MergeAppendContentsTest(name: &quot;test&quot;, behavior: merge, append: True)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="MergeAppendContentsTest" time="0.0002714" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.UnspecifiedContentsTest(name: &quot;test&quot;, behavior: unspecified, append: False)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="UnspecifiedContentsTest" time="0.0002048" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.CreateContentsTest(name: &quot;test&quot;, behavior: create, append: False)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="CreateContentsTest" time="0.0002121" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.MergeContentsTest(name: &quot;test&quot;, behavior: merge, append: False)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="MergeContentsTest" time="0.0001961" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.CreateAppendContentsTest(name: &quot;test&quot;, behavior: create, append: True)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="CreateAppendContentsTest" time="0.0001885" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.UnspecifiedAppendContentsTest(name: &quot;test&quot;, behavior: unspecified, append: True)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="UnspecifiedAppendContentsTest" time="0.0002293" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests.ReplaceAppendContentsTest(name: &quot;test&quot;, behavior: replace, append: True)" type="KustomizeConfigurationGenerator.Tests.FileConfigMapGeneratorTests" method="ReplaceAppendContentsTest" time="0.0002117" result="Pass">
+        <traits />
+      </test>
+    </collection>
+    <collection total="8" passed="8" failed="0" skipped="0" name="Test collection for KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" time="0.006">
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.CreateAppendContentsTest(name: &quot;test&quot;, behavior: create, append: True)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="CreateAppendContentsTest" time="0.0048077" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.MergeAppendContentsTest(name: &quot;test&quot;, behavior: merge, append: True)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="MergeAppendContentsTest" time="0.0001842" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.UnspecifiedAppendContentsTest(name: &quot;test&quot;, behavior: unspecified, append: True)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="UnspecifiedAppendContentsTest" time="0.0001573" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.ReplaceAppendContentsTest(name: &quot;test&quot;, behavior: replace, append: True)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="ReplaceAppendContentsTest" time="0.0001464" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.CreateContentsTest(name: &quot;test&quot;, behavior: create, append: False)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="CreateContentsTest" time="0.0001412" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.MergeContentsTest(name: &quot;test&quot;, behavior: merge, append: False)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="MergeContentsTest" time="0.0001521" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.UnspecifiedContentsTest(name: &quot;test&quot;, behavior: unspecified, append: False)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="UnspecifiedContentsTest" time="0.0001387" result="Pass">
+        <traits />
+      </test>
+      <test name="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests.ReplaceContentsTest(name: &quot;test&quot;, behavior: replace, append: False)" type="KustomizeConfigurationGenerator.Tests.LiteralConfigMapGeneratorTests" method="ReplaceContentsTest" time="0.0001214" result="Pass">
+        <traits />
+      </test>
+    </collection>
+  </assembly>
+</assemblies>
