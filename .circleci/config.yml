@@ -1,6 +1,6 @@
 version: 2.1
 executors:
-  dotnet3:
+  dotnet:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:3.0
     environment:
