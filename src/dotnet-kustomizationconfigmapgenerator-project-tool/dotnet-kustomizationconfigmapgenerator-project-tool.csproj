@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+  </PropertyGroup>
+
+  <!-- nuget -->
+  <PropertyGroup>
+    <PackageType>DotNetCliTool</PackageType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RootNamespace>KustomizeConfigMapGenerator.ProjectTool</RootNamespace>
+    <PackageId>dotnet-kustomizationconfigmapgenerator-project-tool</PackageId>
+    <Description>
+      <![CDATA[Project-installable Kustomize configMapGenerator commandline tool.
+This package can be installed into a project using `DotNetCliToolReference`.
+* To install as a dotnet global or local tool, use `dotnet-kustomizeconfigmapgenerator` instead.]]>
+    </Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MicroBatchFramework" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\KustomizeConfigMapGenerator\**\*.cs" Exclude="..\KustomizeConfigMapGenerator\obj\**\*.cs"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
