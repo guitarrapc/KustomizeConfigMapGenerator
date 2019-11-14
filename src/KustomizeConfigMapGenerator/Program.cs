@@ -22,12 +22,13 @@ namespace KustomizeConfigMapGenerator
             [Option("-s", "search pattern of files. (ex. *.config)")]string searchPattern,
             [Option("-n", "configmap name of ConfigMapGenerator.")]string name,
             [Option("-b", "ConfigMapGenerator behavior.")]Behavior behavior = Behavior.unspecified,
+            [Option("-skip", "skip configMapGenerator: output.")]bool skipHeader = false,
             [Option("-a", "append just an value to existing config.")]bool append = false,
             [Option("-f", "override outputfile without prompt.")]bool forceOutput = false,
             [Option("-d", "dry run.")]bool dryRun = true
         )
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var contents = generator.Generate(inputPath, searchPattern);
             if (dryRun)
             {
@@ -41,7 +42,7 @@ namespace KustomizeConfigMapGenerator
                 Context.Logger.LogInformation("");
                 Context.Logger.LogInformation(contents);
 
-                await generator.WriteAsync(contents, outputPath, forceOutput, Context.CancellationToken);
+                await generator.WriteAsync(contents, outputPath, forceOutput, append, Context.CancellationToken);
             }
         }
 
@@ -51,12 +52,13 @@ namespace KustomizeConfigMapGenerator
             [Option("-o", "path to the output kustomization file.")]string outputPath,
             [Option("-n", "configmap name of ConfigMapGenerator.")]string name,
             [Option("-b", "ConfigMapGenerator behavior.")]Behavior behavior = Behavior.unspecified,
+            [Option("-skip", "skip configMapGenerator: output.")]bool skipHeader = false,
             [Option("-a", "append just an value to existing config.")]bool append = false,
             [Option("-f", "override outputfile without prompt.")]bool forceOutput = false,
             [Option("-d", "dry run.")]bool dryRun = true
         )
         {
-            var generator = new LiteralConfigMapGenerator(name, behavior, append);
+            var generator = new LiteralConfigMapGenerator(name, behavior, skipHeader);
             var keyvalues = inputs.Split(',');
             var contents = generator.Generate(keyvalues);
             if (dryRun)
@@ -71,7 +73,7 @@ namespace KustomizeConfigMapGenerator
                 Context.Logger.LogInformation("");
                 Context.Logger.LogInformation(contents);
 
-                await generator.WriteAsync(contents, outputPath, forceOutput, Context.CancellationToken);
+                await generator.WriteAsync(contents, outputPath, forceOutput, append, Context.CancellationToken);
             }
         }
     }

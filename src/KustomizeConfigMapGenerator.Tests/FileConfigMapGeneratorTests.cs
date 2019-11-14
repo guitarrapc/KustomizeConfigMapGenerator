@@ -12,9 +12,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.unspecified, false)]
-        public void UnspecifiedContentsTest(string name, Behavior behavior, bool append)
+        public void UnspecifiedContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"configMapGenerator:
@@ -30,9 +30,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.create, false)]
-        public void CreateContentsTest(string name, Behavior behavior, bool append)
+        public void CreateContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"configMapGenerator:
@@ -49,9 +49,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.merge, false)]
-        public void MergeContentsTest(string name, Behavior behavior, bool append)
+        public void MergeContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"configMapGenerator:
@@ -68,9 +68,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.replace, false)]
-        public void ReplaceContentsTest(string name, Behavior behavior, bool append)
+        public void ReplaceContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"configMapGenerator:
@@ -87,9 +87,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.unspecified, true)]
-        public void UnspecifiedAppendContentsTest(string name, Behavior behavior, bool append)
+        public void UnspecifiedAppendContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"  - name: {name}
@@ -104,9 +104,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.create, true)]
-        public void CreateAppendContentsTest(string name, Behavior behavior, bool append)
+        public void CreateAppendContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"  - name: {name}
@@ -122,9 +122,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.merge, true)]
-        public void MergeAppendContentsTest(string name, Behavior behavior, bool append)
+        public void MergeAppendContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"  - name: {name}
@@ -140,9 +140,9 @@ namespace KustomizeConfigMapGenerator.Tests
 
         [Theory]
         [InlineData("test", Behavior.replace, true)]
-        public void ReplaceAppendContentsTest(string name, Behavior behavior, bool append)
+        public void ReplaceAppendContentsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             var actual = generator.Generate(basePath, "*.json");
             // result is always LF
             var expected = @$"  - name: {name}
@@ -157,9 +157,9 @@ namespace KustomizeConfigMapGenerator.Tests
         }
         [Theory]
         [InlineData("test", Behavior.unspecified, false)]
-        public void PathNotExistsTest(string name, Behavior behavior, bool append)
+        public void PathNotExistsTest(string name, Behavior behavior, bool skipHeader)
         {
-            var generator = new FileConfigMapGenerator(name, behavior, append);
+            var generator = new FileConfigMapGenerator(name, behavior, skipHeader);
             Assert.Throws<DirectoryNotFoundException>(() => generator.Generate("FooBar", "*.json"));
         }
     }

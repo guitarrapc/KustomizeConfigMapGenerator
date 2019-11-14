@@ -21,8 +21,8 @@ namespace KustomizeConfigMapGenerator.Internals
         // interface
         public abstract string Name { get; }
         public abstract Behavior Behavior { get; }
-        public abstract bool Append { get; }
-        public async Task WriteAsync(string contents, string outputPath, bool force, CancellationToken cancellationToken = default)
+        public abstract bool SkipHeader { get; }
+        public async Task WriteAsync(string contents, string outputPath, bool force, bool append, CancellationToken cancellationToken = default)
         {
             var directory = Path.GetDirectoryName(outputPath);
             if (!Directory.Exists(directory))
@@ -32,7 +32,7 @@ namespace KustomizeConfigMapGenerator.Internals
             if (File.Exists(outputPath) && !force)
                 throw new InvalidOperationException($"Operation cancelled. File already exists. Set `-f true` to force overwrite existing. {outputPath}");
 
-            if (Append)
+            if (append)
             {
                 await File.AppendAllTextAsync(outputPath, contents, encoding, cancellationToken);
             }

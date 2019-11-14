@@ -25,8 +25,8 @@ namespace KustomizeConfigMapGenerator.Internals
         //   - name: the-files
         //     behavior: merge
         //     files:	
-        //       - hoge.txt
         //       - foo/bar.txt
+        //       - hoge.txt
 
         // # not support
         // configMapGenerator:
@@ -35,12 +35,12 @@ namespace KustomizeConfigMapGenerator.Internals
         //     files:	
         //       - configkey=hoge.txt
 
-        public FileConfigMapGenerator(string name, Behavior behavior, bool append)
-            => (Name, Behavior, Append) = (name, behavior, append);
+        public FileConfigMapGenerator(string name, Behavior behavior, bool skipHeader)
+            => (Name, Behavior, SkipHeader) = (name, behavior, skipHeader);
 
         public override string Name { get; }
         public override Behavior Behavior { get; }
-        public override bool Append { get; }
+        public override bool SkipHeader { get; }
         protected override string KindKey => "files:";
 
         public string Generate(string basePath, string searchPattern)
@@ -66,7 +66,7 @@ namespace KustomizeConfigMapGenerator.Internals
             var builder = new StringBuilder();
 
             // header
-            if (!Append)
+            if (!SkipHeader)
             {
                 builder.AppendLineLF(Header);
             }
