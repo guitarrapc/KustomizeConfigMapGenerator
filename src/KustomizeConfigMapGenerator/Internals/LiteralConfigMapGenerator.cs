@@ -72,10 +72,5 @@ namespace KustomizeConfigMapGenerator.Internals
             }
             return builder.ToString();
         }
-
-        internal object Generate(object inputs)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
