@@ -1,0 +1,11 @@
+configMapGenerator:
+  - name: the-files
+    behavior: merge
+    files:
+      - foo/bar.txt
+      - hoge.txt
+  - name: the-files2
+    behavior: merge
+    files:
+      - foo/bar.txt
+      - hoge.txt

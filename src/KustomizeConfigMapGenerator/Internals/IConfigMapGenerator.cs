@@ -14,9 +14,18 @@ namespace KustomizeConfigMapGenerator.Internals
         /// </summary>
         Behavior Behavior { get; }
         /// <summary>
-        /// Append will start from ConfigMapGenerator config name. Ignore ConfigMapGenerator Header.
+        /// Ignore ConfigMapGenerator Header.
         /// </summary>
-        bool Append { get; }
-        Task WriteAsync(string contents, string outputPath, bool force, CancellationToken cancellationToken = default);
+        bool SkipHeader { get; }
+        /// <summary>
+        /// Write configMapGenrator.
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <param name="outputPath"></param>
+        /// <param name="force"></param>
+        /// <param name="append"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task WriteAsync(string contents, string outputPath, bool force, bool append, CancellationToken cancellationToken = default);
     }
 }

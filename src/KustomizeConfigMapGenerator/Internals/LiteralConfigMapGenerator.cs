@@ -24,14 +24,14 @@ namespace KustomizeConfigMapGenerator.Internals
         //     behavior: merge
         //     literals:
         //       - altGreeting=Good Morning!
-        //       - enableRisky="false"
+        //       - enableRisky=false
 
-        public LiteralConfigMapGenerator(string name, Behavior behavior, bool append)
-            => (Name, Behavior, Append) = (name, behavior, append);
+        public LiteralConfigMapGenerator(string name, Behavior behavior, bool skipHeader)
+            => (Name, Behavior, SkipHeader) = (name, behavior, skipHeader);
 
         public override string Name { get; }
         public override Behavior Behavior { get; }
-        public override bool Append { get; }
+        public override bool SkipHeader { get; }
         protected override string KindKey => "literals:";
 
         public string Generate(IEnumerable<string> inputs)
@@ -48,7 +48,7 @@ namespace KustomizeConfigMapGenerator.Internals
             var builder = new StringBuilder();
 
             // header
-            if (!Append)
+            if (!SkipHeader)
             {
                 builder.AppendLineLF(Header);
             }
@@ -71,11 +71,6 @@ namespace KustomizeConfigMapGenerator.Internals
                 builder.AppendLineLFIndent6($"- {value}");
             }
             return builder.ToString();
-        }
-
-        internal object Generate(object inputs)
-        {
-            throw new NotImplementedException();
         }
     }
 }
