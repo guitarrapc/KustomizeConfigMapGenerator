@@ -13,6 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RootNamespace>KustomizeConfigMapGenerator.ProjectTool</RootNamespace>
+    <AssemblyName>dotnet-kustomizationconfigmapgenerator</AssemblyName>
     <PackageId>dotnet-kustomizationconfigmapgenerator-project-tool</PackageId>
     <Description>
       <![CDATA[Project-installable Kustomize configMapGenerator commandline tool.
