@@ -24,7 +24,7 @@ namespace KustomizeConfigMapGenerator.Internals
         //     behavior: merge
         //     literals:
         //       - altGreeting=Good Morning!
-        //       - enableRisky="false"
+        //       - enableRisky=false
 
         public LiteralConfigMapGenerator(string name, Behavior behavior, bool skipHeader)
             => (Name, Behavior, SkipHeader) = (name, behavior, skipHeader);

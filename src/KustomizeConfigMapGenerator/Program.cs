@@ -15,7 +15,7 @@ namespace KustomizeConfigMapGenerator
 
     public class GeneratorBatch : BatchBase
     {
-        [Command("file", "Generate ConfigMap from specific path's files.")]
+        [Command("files", "Generate ConfigMap from specific path's files.")]
         public async Task ExecuteFile(
             [Option("-i", "path to the base directory to search.")]string inputPath,
             [Option("-o", "path to the output kustomization file.")]string outputPath,
@@ -38,7 +38,7 @@ namespace KustomizeConfigMapGenerator
             }
             else
             {
-                Context.Logger.LogInformation("begin writing following contents.");
+                Context.Logger.LogInformation($"begin writing following contents to {outputPath}.");
                 Context.Logger.LogInformation("");
                 Context.Logger.LogInformation(contents);
 
@@ -69,7 +69,7 @@ namespace KustomizeConfigMapGenerator
             }
             else
             {
-                Context.Logger.LogInformation("begin writing following contents.");
+                Context.Logger.LogInformation($"begin writing following contents to {outputPath}.");
                 Context.Logger.LogInformation("");
                 Context.Logger.LogInformation(contents);
 
