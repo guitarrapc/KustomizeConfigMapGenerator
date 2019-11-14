@@ -35,15 +35,23 @@ jobs:
       - checkout
       - run: dotnet build -c Release -p:Version=${CIRCLE_TAG}
       - run: dotnet test -c Release < /dev/null
+      # KustomizeConfigMapGenerator
       - run: dotnet pack ./src/KustomizeConfigMapGenerator/KustomizeConfigMapGenerator.csproj -c Release --no-build -p:Version=${CIRCLE_TAG}
       - run: dotnet nuget push ./src/KustomizeConfigMapGenerator/bin/Release/KustomizeConfigMapGenerator.${CIRCLE_TAG}.nupkg -s https://www.nuget.org/api/v2/package -k ${NUGET_KEY}
       - store_artifacts:
           path: ./src/KustomizeConfigMapGenerator/bin/Release
           destination: ./KustomizeConfigMapGenerator/
+      # dotnet-kustomizationconfigmapgenerator-project-tool
+      - run: dotnet pack ./src/dotnet-kustomizationconfigmapgenerator-project-tool/dotnet-kustomizationconfigmapgenerator-project-tool.csproj -c Release --no-build -p:Version=${CIRCLE_TAG}
+      - run: dotnet nuget push ./src/dotnet-kustomizationconfigmapgenerator-project-tool/bin/Release/dotnet-kustomizationconfigmapgenerator-project-tool.${CIRCLE_TAG}.nupkg -s https://www.nuget.org/api/v2/package -k ${NUGET_KEY}
+      - store_artifacts:
+          path: ./src/dotnet-kustomizationconfigmapgenerator-project-tool/bin/Release
+          destination: ./dotnet-kustomizationconfigmapgenerator-project-tool/
   build-singlepackage:
     executor: dotnet
     steps:
       - checkout
+      # KustomizeConfigMapGenerator
       - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./KustomizeConfigMapGenerator -r win-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}
       - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./KustomizeConfigMapGenerator -r linux-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}
       - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./KustomizeConfigMapGenerator -r osx-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}

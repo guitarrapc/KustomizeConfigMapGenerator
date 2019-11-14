@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KustomizeConfigMapGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KustomizeConfigMapGenerator.Tests", "src\KustomizeConfigMapGenerator.Tests\KustomizeConfigMapGenerator.Tests.csproj", "{3832702F-1922-41B2-B868-658F1BF3EF0B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-kustomizationconfigmapgenerator-project-tool", "src\dotnet-kustomizationconfigmapgenerator-project-tool\dotnet-kustomizationconfigmapgenerator-project-tool.csproj", "{8DBB702C-F8E7-4FD9-9E28-1BA34AAA32F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3832702F-1922-41B2-B868-658F1BF3EF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3832702F-1922-41B2-B868-658F1BF3EF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3832702F-1922-41B2-B868-658F1BF3EF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBB702C-F8E7-4FD9-9E28-1BA34AAA32F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBB702C-F8E7-4FD9-9E28-1BA34AAA32F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBB702C-F8E7-4FD9-9E28-1BA34AAA32F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBB702C-F8E7-4FD9-9E28-1BA34AAA32F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
