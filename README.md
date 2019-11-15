@@ -1,8 +1,11 @@
-[![CircleCI](https://circleci.com/gh/guitarrapc/KustomizeConfigMapGenerator.svg?style=svg)](https://circleci.com/gh/guitarrapc/KustomizeConfigMapGenerator) [![NuGet](https://img.shields.io/nuget/v/KustomizeConfigMapGenerator.svg)](https://www.nuget.org/packages/KustomizeConfigMapGenerator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![codecov](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator)
+[![CircleCI](https://circleci.com/gh/guitarrapc/KustomizeConfigMapGenerator.svg?style=svg)](https://circleci.com/gh/guitarrapc/KustomizeConfigMapGenerator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![codecov](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator)
 
 ## KustomizeConfigMapGenerator
 
-dotnet global tool to generate Kustomization's ConfigMapGenerator section.
+dotnet global tool & dotnet project tool to generate Kustomization's ConfigMapGenerator section.
+
+If you want run as cli, please use dotnet global tool. 
+If you want run as .csproj pre|post event, dotnet project tool may help you not need explict installation.
 
 ## Concept
 
@@ -11,11 +14,40 @@ dotnet global tool to generate Kustomization's ConfigMapGenerator section.
 
 ## Install
 
+nuget | version | description | run
+---- | ---- | ---- | ----
+KustomizeConfigMapGenerator | [![NuGet](https://img.shields.io/nuget/v/KustomizeConfigMapGenerator.svg)](https://www.nuget.org/packages/KustomizeConfigMapGenerator) | dotnet global tool | `dotnet-kustomizeconfigmapgenerator subcommand args`
+dotnet-kustomizationconfigmapgenerator-project-tool | [![NuGet](https://img.shields.io/nuget/v/dotnet-kustomizationconfigmapgenerator-project-tool.svg)](https://www.nuget.org/packages/dotnet-kustomizationconfigmapgenerator-project-tool) | dotnet project tool | `dotnet kustomizeconfigmapgenerator subcommand args`
+
+### dotnet global tool
+
+You can install `KustomizeConfigMapGenerator` with dotnet cli and run as dotnet global tool.
+
+
 ```
 dotnet tool install --global KustomizeConfigMapGenerator
 ```
 
-you can run with `dotnet-kustomizeconfigmapgenerator`.
+### dotnet project tool
+
+You can install `dotnet-kustomizationconfigmapgenerator-project-tool` by adding `DotNetCliToolReference` to your csproj.
+
+```xml
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-kustomizationconfigmapgenerator-project-tool" Version="0.2.1" />
+  </ItemGroup>
+```
+
+this enable you to restore package via `dotnet restore` then reference within project. (you don't need install global tool)
+
+```xml
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet kustomizationconfigmapgenerator literals -i "foo=bar" -o kustomization.yaml -n the-map -d false -f true" />
+  </Target>
+```
+
+## Help
+
 see samples [below](Samples).
 
 ```
@@ -45,6 +77,8 @@ files: Generate ConfigMap from specific path's files.
 
 CofigMapGenerator is dynamic configuration source mechanism for Kubernetes.
 With this functionality, you can load ConfigurationMap to the deployment everytime ConfigMapGenerator is change.
+
+> see: [kustomize/configGeneration\.md at master · kubernetes\-sigs/kustomize](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/configGeneration.md)
 
 However `kubectl kustomize` not allow directories as input.
 
@@ -153,6 +187,12 @@ configMapGenerator:
 ```shell
 $ dotnet-kustomizeconfigmapgenerator literals -i 'altGreeting=Good Morning!,enableRisky=false' -o ./samples/kustomization.yaml -s *.txt -name the-files -b merge -d false -f true
 $ cat ./samples/kustomization.yaml
+configMapGenerator:
+  - name: the-map
+    behavior: merge
+    literals:
+      - altGreeting=Good Morning!
+      - enableRisky=false
 ```
 
 ## Q&A
@@ -162,3 +202,8 @@ A. Because ShellScript can not run on Windows, especially set to .csproj build e
 
 Q. Will support other kustomization header like pathes, resources, namespace, commonAnnotations, etc.?
 A. No, just an configMapGeneartor section. this output should refer as `base:` kustomization yaml.
+
+## REF
+
+> [\.NET Core CLI extensibility model \- \.NET Core CLI \| Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/core/tools/extensibility)
+> [Package Type \[Packing\] · NuGet/Home Wiki](https://github.com/NuGet/Home/wiki/Package-Type-%5BPacking%5D)
