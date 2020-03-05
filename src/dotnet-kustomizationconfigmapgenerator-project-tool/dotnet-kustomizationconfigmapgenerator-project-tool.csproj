@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <!-- see https://github.com/dotnet/docs/issues/12237 -->
     <RollForward>LatestMajor</RollForward>
     <Version>0.1.0</Version>
@@ -29,7 +29,7 @@ This package can be installed into a project using `DotNetCliToolReference`.
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\KustomizeConfigMapGenerator\**\*.cs" Exclude="..\KustomizeConfigMapGenerator\obj\**\*.cs"/>
+    <Compile Include="..\KustomizeConfigMapGenerator\**\*.cs" Exclude="..\KustomizeConfigMapGenerator\obj\**\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
