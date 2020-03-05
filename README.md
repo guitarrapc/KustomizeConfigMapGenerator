@@ -34,7 +34,7 @@ You can install `dotnet-kustomizationconfigmapgenerator-project-tool` by adding 
 
 ```xml
   <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-kustomizationconfigmapgenerator-project-tool" Version="0.2.1" />
+    <DotNetCliToolReference Include="dotnet-kustomizationconfigmapgenerator-project-tool" Version="0.3.0" />
   </ItemGroup>
 ```
 
