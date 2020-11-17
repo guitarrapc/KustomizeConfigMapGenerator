@@ -37,9 +37,9 @@ jobs:
           name: nuget
           path: ./pack/
       # publish
-      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r win-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}
-      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r linux-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}
-      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r osx-x64 -p:PublishSingleFile=true -p:Version=${CIRCLE_TAG}
+      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r win-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
+      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r linux-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
+      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r osx-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
       - uses: actions/upload-artifact@v2
         with:
           name: publish
