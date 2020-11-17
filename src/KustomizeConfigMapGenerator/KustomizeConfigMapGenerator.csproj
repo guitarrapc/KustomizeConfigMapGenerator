@@ -30,7 +30,7 @@
     <AssemblyName>KustomizeConfigMapGenerator_$(RuntimeIdentifier)_$(Version)</AssemblyName>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>true</PublishTrimmed>
-    <IncludeSymbolsInSingleFile>true</IncludeSymbolsInSingleFile>
+    <IncludeSymbolsInSingleFile>false</IncludeSymbolsInSingleFile>
   </PropertyGroup>
 
   <ItemGroup>
