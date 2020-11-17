@@ -1,11 +1,13 @@
-[![CircleCI](https://circleci.com/gh/guitarrapc/KustomizeConfigMapGenerator.svg?style=svg)](https://circleci.com/gh/guitarrapc/KustomizeConfigMapGenerator) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![codecov](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator)
+![dotnet-build](https://github.com/guitarrapc/KustomizeConfigMapGenerator/workflows/dotnet-build/badge.svg) ![release](https://github.com/guitarrapc/KustomizeConfigMapGenerator/workflows/release/badge.svg) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![codecov](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator/branch/master/graph/badge.svg)](https://codecov.io/gh/guitarrapc/KustomizeConfigMapGenerator)
 
 ## KustomizeConfigMapGenerator
 
-dotnet global tool & dotnet project tool to generate Kustomization's ConfigMapGenerator section.
+dotnet global/local tool & dotnet project tool to generate Kustomization's ConfigMapGenerator section.
 
-If you want run as cli, please use dotnet global tool. 
-If you want run as .csproj pre|post event, dotnet project tool may help you not need explict installation.
+* Want run as cli, use dotnet global tool. 
+* Want run as build, use dotnet local tool.
+
+> .NET Core 2.2 only: If you want run as .csproj pre|post event, dotnet project tool may help you not need explict installation.
 
 ## Concept
 
@@ -34,7 +36,7 @@ You can install `dotnet-kustomizationconfigmapgenerator-project-tool` by adding 
 
 ```xml
   <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-kustomizationconfigmapgenerator-project-tool" Version="0.3.0" />
+    <DotNetCliToolReference Include="dotnet-kustomizationconfigmapgenerator-project-tool" Version="0.4.0" />
   </ItemGroup>
 ```
 
