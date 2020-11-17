@@ -37,9 +37,9 @@ jobs:
           name: nuget
           path: ./pack/
       # publish
-      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r win-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
-      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r linux-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
-      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f net5.0 -r osx-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
+      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f netcoreapp3.1 -r win-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
+      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f netcoreapp3.1 -r linux-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
+      - run: dotnet publish ./src/KustomizeConfigMapGenerator/ -c Release -o ./publish -f netcoreapp3.1 -r osx-x64 -p:PublishSingleFile=true -p:Version=${{ env.GIT_TAG }}
       - uses: actions/upload-artifact@v2
         with:
           name: publish
@@ -76,8 +76,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./publish/KustomizeConfigMapGenerator_win-x64_${{ env.GIT_TAG }}
-          asset_name: KustomizeConfigMapGenerator_win-x64_${{ env.GIT_TAG }}
+          asset_path: ./publish/KustomizeConfigMapGenerator_win-x64_${{ env.GIT_TAG }}.exe
+          asset_name: KustomizeConfigMapGenerator_win-x64_${{ env.GIT_TAG }}.exe
           asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1
         env:
