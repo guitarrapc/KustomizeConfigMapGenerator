@@ -11,8 +11,8 @@ dotnet global/local tool & dotnet project tool to generate Kustomization's Confi
 
 ## Concept
 
-* **Simple**, generate `configMapGenerator` section only YAML file.
-* **MultiPlatform**, you can run tool on .NET Core 3.0 support environment.
+* **Simple**: generate kustomization yaml for `configMapGenerator` section only.
+* **MultiPlatform**: you can run tool on .NET Core 3.1 and .NET 5 runtime
 
 ## Install
 
@@ -25,12 +25,49 @@ dotnet-kustomizationconfigmapgenerator-project-tool | [![NuGet](https://img.shie
 
 You can install `KustomizeConfigMapGenerator` with dotnet cli and run as dotnet global tool.
 
-
 ```
 dotnet tool install --global KustomizeConfigMapGenerator
 ```
 
+### dotnet local tools
+
+> This feature is for .NET 3.1 and above.
+
+You can install `KustomizeConfigMapGenerator` for your local tools.
+
+```shell
+dotnet new tool-manifest
+dotnet tool install KustomizeConfigMapGenerator
+```
+
+Generated .config/dotnet-tools.json contains `dotnet-kustomizeconfigmapgenerator` item.
+
+```json
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "kustomizeconfigmapgenerator": {
+      "version": "0.4.0",
+      "commands": [
+        "dotnet-kustomizeconfigmapgenerator"
+      ]
+    }
+  }
+}
+```
+
+This enable you to restore package via `dotnet restore` then reference within project. (you don't need install global tool)
+
+```xml
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet kustomizationconfigmapgenerator literals -i "foo=bar" -o kustomization.yaml -n the-map -d false -f true" />
+  </Target>
+```
+
 ### dotnet project tool
+
+> This feature is for .NET Core 2.2 only.
 
 You can install `dotnet-kustomizationconfigmapgenerator-project-tool` by adding `DotNetCliToolReference` to your csproj.
 
@@ -40,7 +77,7 @@ You can install `dotnet-kustomizationconfigmapgenerator-project-tool` by adding 
   </ItemGroup>
 ```
 
-this enable you to restore package via `dotnet restore` then reference within project. (you don't need install global tool)
+This enable you to restore package via `dotnet restore` then reference within project. (you don't need install global tool)
 
 ```xml
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
