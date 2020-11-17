@@ -25,7 +25,7 @@ namespace KustomizeConfigMapGenerator.Internals
         public async Task WriteAsync(string contents, string outputPath, bool force, bool append, CancellationToken cancellationToken = default)
         {
             var directory = Path.GetDirectoryName(outputPath);
-            if (!Directory.Exists(directory))
+            if (directory != null && !Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
