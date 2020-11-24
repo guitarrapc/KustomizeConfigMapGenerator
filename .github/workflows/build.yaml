@@ -29,7 +29,7 @@ jobs:
           dotnet-version: 2.2.x
       - run: dotnet build ./src/KustomizeConfigMapGenerator/ -c Debug
       - run: dotnet build ./src/dotnet-kustomizationconfigmapgenerator-project-tool/ -c Debug
-      - run: dotnet test ./src/KustomizeConfigMapGenerator.Tests/ -c Debug -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --test-adapter-path:. --logger:"xunit;LogFilePath=results.xml"
+      - run: dotnet test ./src/KustomizeConfigMapGenerator.Tests/ -c Debug -p:CollectCoverage=true -p:CoverletOutputFormat=opencover
       - uses: codecov/codecov-action@v1
         with:
           file: ./src/KustomizeConfigMapGenerator.Tests/coverage.opencover.xml
